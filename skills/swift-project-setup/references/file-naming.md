@@ -63,3 +63,5 @@ Rules:
 | Shared domain models | `Services/Networking/` | `Core/Models/` |
 | Test mocks | Main app target | Test target `Mocks/` |
 | `UIHostingController` wrappers | `Features/` | `Bridge/` (mixed projects only) |
+| `ModelContext` / `NSManagedObjectContext` | `ViewModel`, `View` | `Services/Storage/` (repository only) |
+| Persistence models (`@Model`, `NSManagedObject`) | `Services/` | `Core/Models/` |
