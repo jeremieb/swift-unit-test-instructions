@@ -23,41 +23,13 @@ Ask the user (if not already provided):
 
 ### Step 2: Define Folder Structure
 
-Generate the following layout and explain each folder's purpose:
+Consult `references/xcode-structure.md` and pick the template that matches the project's UI framework (SwiftUI, UIKit, or Mixed). Apply it exactly — do not invent a different layout.
 
-```
-ProjectName/
-├── App/
-│   ├── ProjectNameApp.swift          # SwiftUI entry point
-│   └── AppDelegate.swift             # UIKit entry point (if needed)
-├── Features/
-│   └── [FeatureName]/
-│       ├── [FeatureName]View.swift
-│       ├── [FeatureName]ViewModel.swift
-│       └── [FeatureName]Model.swift
-├── Services/
-│   ├── Networking/
-│   │   ├── APIClient.swift
-│   │   └── Endpoint.swift
-│   └── Storage/
-├── Core/
-│   ├── Extensions/
-│   ├── Utilities/
-│   └── Protocols/
-├── Resources/
-│   ├── Assets.xcassets
-│   └── Localizable.strings
-├── CLAUDE.md                         # Project AI instructions
-└── tasks/
-    ├── todo.md
-    └── lessons.md
-```
-
-Test targets (Xcode groups, not source folders):
-```
-ProjectNameTests/        # Unit test target
-ProjectNameUITests/      # UI test target
-```
+Key rules from the reference:
+- One folder per user-facing feature under `Features/`
+- Business logic in `Services/`, reusable UI in `Core/Components/`
+- Test mocks live in the test target under `Mocks/`, never in the main target
+- See the "What Never Goes Where" table before placing any file
 
 ### Step 3: Generate Architecture Skeleton
 
@@ -184,6 +156,10 @@ Actions:
 1. Generate UIKit-oriented structure (SceneDelegate, AppDelegate, Coordinators)
 2. Create `HomeViewController` + `HomeViewModel`
 3. Set testing mode to enterprise in CLAUDE.md
+
+## References
+
+- `references/xcode-structure.md` — folder structure templates (SwiftUI, UIKit, Mixed), file naming conventions, .gitignore, SPM skeleton
 
 ## Troubleshooting
 

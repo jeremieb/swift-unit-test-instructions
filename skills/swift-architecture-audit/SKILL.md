@@ -13,6 +13,9 @@ metadata:
 
 ### Step 1: Explore the Project Structure
 
+Consult `references/xcode-structure.md` (from the `swift-project-setup` skill) for the expected folder layout. Use it as the baseline when identifying structural deviations.
+
+
 Use subagents to parallelize exploration of large codebases.
 
 Scan for:
@@ -128,6 +131,10 @@ Actions:
 2. Identify patterns: which architecture style is in use (MVVM, MV, etc.)
 3. Note testing state
 4. Generate onboarding summary + list of known issues
+
+## References
+
+- `../swift-project-setup/references/xcode-structure.md` — canonical folder structure, file naming conventions, "What Never Goes Where" table
 
 ## Troubleshooting
 
