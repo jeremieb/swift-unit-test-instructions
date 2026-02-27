@@ -1,173 +1,104 @@
-# iOS Testing Standards
+# Swift Claude Code Framework
 
-A practical, production-ready testing standard for **Swift, UIKit, and SwiftUI** projects.
+A reusable framework of Claude Code instructions for **Swift, SwiftUI, and UIKit** projects.
 
-This repository provides two structured testing guidelines:
-
-- **Enterprise Standard** — strict, scalable, CI-ready governance
-- **Indie Standard** — lean, pragmatic, and sustainable for solo or small teams
-
-Both versions are designed to be:
-- Clear for humans
-- Deterministic for CI
-- Easy for AI tools to follow
-- Aligned with Apple’s official testing guidance (XCTest, Swift Testing, XCUITest, Test Plans)
+It combines a project-level `CLAUDE.md` template with a set of focused skills that auto-trigger based on what you ask Claude to do — so you stop re-explaining standards on every project and every conversation.
 
 ---
 
-## Why This Exists
+## What's Inside
 
-Testing culture in iOS projects often drifts toward:
-
-- Testing implementation details instead of behavior
-- Fragile UI tests
-- Over-reliance on snapshots
-- Poor async handling
-- Coverage-driven vanity metrics
-- Inconsistent architecture affecting testability
-
-This repository defines a **consistent, architecture-driven testing contract** for modern Apple platform projects.
-
----
-
-## What’s Included
-
-### 1. Enterprise Version
-
-For:
-- Large teams
-- Regulated environments
-- CI/CD-heavy pipelines
-- Code review governance
-- High stability requirements
-
-Includes:
-- Strict architectural requirements
-- Coverage expectations
-- Async policies
-- UI test boundaries
-- Prohibited anti-patterns
-- Test plan governance
+```
+CLAUDE.md                           # Drop into any Swift project root
+enterprise.md                       # Enterprise testing standard (human reference)
+indiedev.md                         # Indie testing standard (human reference)
+skills/
+├── swift-project-setup/            # Scaffold a new project
+├── swift-testing/                  # Write unit and UI tests
+│   └── references/
+│       ├── enterprise.md           # Strict, CI-ready standard
+│       └── indie.md                # Lean, pragmatic standard
+├── swift-architecture-audit/       # Audit or onboard to an existing codebase
+├── swiftui-component/              # Create SwiftUI views and ViewModels
+├── swift-networking/               # Build a networking layer with async/await
+├── swift-code-review/              # Review Swift code for standards compliance
+└── swift-project-setup/
+    └── references/
+        ├── structure-swiftui.md    # SwiftUI folder structure
+        ├── structure-uikit.md      # UIKit folder structure
+        ├── structure-mixed.md      # Mixed SwiftUI + UIKit structure
+        ├── file-naming.md          # Naming conventions and group rules
+        ├── gitignore-xcode.md      # .gitignore for Xcode projects
+        └── spm-skeleton.md         # Package.swift skeleton
+```
 
 ---
 
-### 2. Indie Version
+## Quick Start
 
-For:
-- Solo developers
-- Small product teams
-- Rapid iteration cycles
-- Product-first experimentation
+### New project
 
-Focuses on:
-- Fast feedback loops
-- Minimal UI test overhead
-- Testing logic over UI
-- Keeping tests maintainable long-term
+1. **Copy `CLAUDE.md`** into your project root
+2. **Fill in the config block** at the top:
+   ```
+   - Project Name: MyApp
+   - Testing Mode: enterprise | indie
+   - UI Framework: SwiftUI | UIKit | Both
+   - Min iOS Version: 17.0
+   ```
+3. **Copy the `skills/` folder** into `.claude/skills/` in your project
+4. Ask Claude: *"set up the project structure"* — it picks the right template and scaffolds everything
 
----
+### Existing project
 
-## Design Philosophy
-
-These standards follow a few core principles:
-
-### Behavior > Implementation
-Tests must validate observable outcomes, not private internals.
-
-### Determinism
-No real network calls, no sleeping, no flakiness.
-
-### Architecture First
-If something is hard to test, the architecture likely needs improvement.
-
-### Thin UI Layers
-Business logic does not belong inside ViewControllers or SwiftUI Views.
-
-### Async Correctness
-Modern Swift concurrency must be tested with proper async patterns.
+1. **Copy `CLAUDE.md`** into your project root and fill in the config block
+2. **Copy the `skills/` folder** into `.claude/skills/`
+3. Ask Claude: *"audit the architecture"* — it scans the codebase, compares against the standard structure, and gives you a prioritized list of issues to fix
 
 ---
 
-## Framework Compatibility
+## How Skills Work
 
-Designed for:
+Skills are instruction packages that Claude loads **only when relevant** — you don't pay the token cost of loading testing rules when you're building a view, or networking rules when you're writing tests.
 
-- Swift Testing (recommended for new Swift-first projects)
-- XCTest
-- XCUITest
-- Xcode Test Plans
-- Swift Concurrency (async/await)
-- UIKit
-- SwiftUI
+| Skill | Ask Claude... |
+|---|---|
+| `swift-project-setup` | *"scaffold a new SwiftUI app"*, *"set up the project"* |
+| `swift-testing` | *"write tests for this ViewModel"*, *"add unit tests"* |
+| `swift-architecture-audit` | *"audit the architecture"*, *"why is this hard to test"* |
+| `swiftui-component` | *"create a profile screen"*, *"add a SwiftUI view"* |
+| `swift-networking` | *"add a networking layer"*, *"fetch data from this API"* |
+| `swift-code-review` | *"review this code"*, *"check this PR"* |
 
----
-
-## How To Use
-
-1. Copy the version that fits your project:
-   - `enterprise.md`
-   - `indie.md`
-
-2. Add it to:
-   - `/Docs/Testing.md`
-   - or your `/AI_INSTRUCTIONS.md`
-   - or your `/CONTRIBUTING.md`
-
-3. Enforce it in:
-   - Pull requests
-   - CI pipelines
-   - Code review guidelines
+Each skill asks a clarifying question before loading detail — for example, `swift-project-setup` asks SwiftUI, UIKit, or Mixed before pulling in the relevant folder structure template. `swift-testing` checks your `Testing Mode` config to apply enterprise or indie standards.
 
 ---
 
-## Who This Is For
+## Testing Standards
 
-- iOS engineers
-- Swift developers
-- Technical leads
-- Indie Apple developers
-- Teams adopting Swift Concurrency
-- Teams modernizing legacy UIKit projects
+The `enterprise.md` and `indiedev.md` files at the root are **standalone human references** — copy them into your project docs, CONTRIBUTING.md, or CI guidelines. They are also bundled inside the `swift-testing` skill as references Claude reads when writing tests.
 
----
+**Enterprise** — for large teams, regulated environments, CI/CD pipelines:
+- Strict architecture requirements and coverage expectations
+- Mandatory test plan governance
+- Async determinism policy
 
-## Not Included (On Purpose)
-
-This repository does NOT include:
-
-- Snapshot testing mandates
-- Third-party testing frameworks
-- Opinionated architecture frameworks (e.g., TCA, VIPER, etc.)
-- Mocking library requirements
-
-It stays framework-neutral while enforcing quality boundaries.
+**Indie** — for solo developers and small product teams:
+- Fast feedback loops, minimal overhead
+- Test logic over UI
+- Sustainable long-term
 
 ---
 
-## Contribution Philosophy
+## Design Principles
 
-If contributing:
-
-- Propose changes that align with Apple’s official guidance.
-- Avoid adding opinionated architectural mandates unless widely accepted.
-- Prioritize clarity and maintainability.
-- Keep rules enforceable and practical.
+- **Thin UI layers** — business logic never lives in Views or ViewControllers
+- **Behavior over implementation** — tests validate outcomes, not internals
+- **Testability as a design signal** — if something is hard to test, the architecture needs improvement
+- **MVVM by default** — ViewModels own state, Services own data access, Views own nothing
 
 ---
 
 ## License
 
 MIT — use freely in personal or commercial projects.
-
----
-
-## Final Note
-
-Good tests don’t slow teams down.  
-Bad tests do.
-
-These standards aim to make testing:
-- Reliable
-- Predictable
-- Architecture-aligned
-- Sustainable over time

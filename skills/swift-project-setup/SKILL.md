@@ -23,13 +23,14 @@ Ask the user (if not already provided):
 
 ### Step 2: Define Folder Structure
 
-Consult `references/xcode-structure.md` and pick the template that matches the project's UI framework (SwiftUI, UIKit, or Mixed). Apply it exactly — do not invent a different layout.
+Ask if not already provided: **SwiftUI, UIKit, or Mixed (SwiftUI + UIKit)?**
 
-Key rules from the reference:
-- One folder per user-facing feature under `Features/`
-- Business logic in `Services/`, reusable UI in `Core/Components/`
-- Test mocks live in the test target under `Mocks/`, never in the main target
-- See the "What Never Goes Where" table before placing any file
+Then load the matching reference:
+- SwiftUI → `references/structure-swiftui.md`
+- UIKit → `references/structure-uikit.md`
+- Mixed → `references/structure-mixed.md`
+
+Apply the template exactly. Then consult `references/file-naming.md` for group naming rules and the "What Never Goes Where" table before placing any file.
 
 ### Step 3: Generate Architecture Skeleton
 
@@ -159,7 +160,12 @@ Actions:
 
 ## References
 
-- `references/xcode-structure.md` — folder structure templates (SwiftUI, UIKit, Mixed), file naming conventions, .gitignore, SPM skeleton
+- `references/structure-swiftui.md` — SwiftUI folder structure + test targets
+- `references/structure-uikit.md` — UIKit folder structure + test targets
+- `references/structure-mixed.md` — Mixed SwiftUI + UIKit structure + Bridge/ rules
+- `references/file-naming.md` — file naming good/bad, group naming, "What Never Goes Where"
+- `references/gitignore-xcode.md` — .gitignore for Xcode/Swift projects
+- `references/spm-skeleton.md` — Package.swift skeleton for extracting modules
 
 ## Troubleshooting
 

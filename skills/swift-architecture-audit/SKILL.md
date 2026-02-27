@@ -13,7 +13,7 @@ metadata:
 
 ### Step 1: Explore the Project Structure
 
-Consult `references/xcode-structure.md` (from the `swift-project-setup` skill) for the expected folder layout. Use it as the baseline when identifying structural deviations.
+Identify the UI framework in use (SwiftUI, UIKit, or Mixed) by scanning the project — look for `@main`, `UIApplicationDelegate`, or `UIHostingController`. Then load the matching structure reference from `../swift-project-setup/references/` and use it as the baseline when identifying structural deviations.
 
 
 Use subagents to parallelize exploration of large codebases.
@@ -134,7 +134,10 @@ Actions:
 
 ## References
 
-- `../swift-project-setup/references/xcode-structure.md` — canonical folder structure, file naming conventions, "What Never Goes Where" table
+- `../swift-project-setup/references/structure-swiftui.md` — expected SwiftUI layout
+- `../swift-project-setup/references/structure-uikit.md` — expected UIKit layout
+- `../swift-project-setup/references/structure-mixed.md` — expected Mixed layout
+- `../swift-project-setup/references/file-naming.md` — naming rules and "What Never Goes Where" table
 
 ## Troubleshooting
 
