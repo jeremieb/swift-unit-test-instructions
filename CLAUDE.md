@@ -38,4 +38,23 @@ Install in `.claude/skills/` — they auto-trigger based on your request.
 | `swift-architecture-audit` | "audit codebase", "why is this untestable", "onboard" |
 | `swiftui-component` | "create view", "add screen", "build UI" |
 | `swift-networking` | "add networking", "create API layer" |
+| `swift-persistence` | "add CoreData", "set up SwiftData", "persist data" |
 | `swift-code-review` | "review this", "check this PR" |
+
+## Commands
+
+Run with `/command-name` in Claude Code.
+
+| Command | What it does |
+|---|---|
+| `/swift-feature` | Full feature workflow: analysis → confirm → implement → build |
+| `/swift-build` | Build validation (xcodebuild or swift build) |
+| `/swift-arch-check` | Read-only architecture audit with structured report |
+
+## Agents
+
+Invoked by commands or directly by name.
+
+| Agent | Role |
+|---|---|
+| `swift-staff-engineer` | Skeptical senior reviewer — finds issues before they ship |

@@ -19,6 +19,7 @@ Ask the user (if not already provided):
 - Minimum iOS version
 - UI framework: SwiftUI, UIKit, or both
 - Testing mode: enterprise or indie (see `references/` in `swift-testing` skill)
+- Persistence: None / SwiftData (iOS 17+) / CoreData
 - Any SPM dependencies to add upfront
 
 ### Step 2: Define Folder Structure
@@ -109,7 +110,24 @@ Copy the following skills from `swift-unit-test-instructions/skills/`:
 - `swift-architecture-audit/` (recommended)
 - `swiftui-component/` (if using SwiftUI)
 - `swift-networking/` (if networking needed)
+- `swift-persistence/` (if persistence selected)
 - `swift-code-review/` (recommended)
+
+Also copy `.claude/commands/` and `.claude/agents/` from `swift-unit-test-instructions/` into the project's `.claude/` folder.
+
+**STOP. Present the plan to the user and wait for confirmation before generating any files.**
+
+```
+Plan: [ProjectName]
+Structure: [SwiftUI | UIKit | Mixed]
+Persistence: [None | SwiftData | CoreData]
+Testing: [enterprise | indie]
+
+Files to create:
+  - [list key files]
+
+Confirm to proceed?
+```
 
 ### Step 6: Initial Testing Files
 
